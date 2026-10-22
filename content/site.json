@@ -1,0 +1,43 @@
+{
+  "name": "Charlottesville Area Quilters Guild",
+  "url": "https://cvillequilt.org",
+  "email": "president@cvillequilt.org",
+  "address": ["PO Box 6724", "Charlottesville, VA 22906"],
+  "facebook": "https://www.facebook.com/CvilleQuilts/",
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about/" },
+    { "label": "Chapters", "href": "/services/" },
+    { "label": "Calendar", "href": "/calendar/" },
+    { "label": "Quilt Show", "href": "/quilt-show/" },
+    { "label": "Service", "href": "/service/", "children": [
+      { "label": "Community Service", "href": "/service/" },
+      { "label": "Bright Stars", "href": "/bright-stars/" },
+      { "label": "Fidget Blankets", "href": "/fidget-blankets/" },
+      { "label": "Meals on Wheels", "href": "/meals-on-wheels/" },
+      { "label": "NICU Quilts", "href": "/pillowcase-challenge-duplicate-2362/" },
+      { "label": "Pillowcase Challenge", "href": "/pillowcase-challenge/" },
+      { "label": "Long Arm Quilters for Community Quilts", "href": "/long-arm-quilters-for-community-quilts/" }
+    ] },
+    { "label": "Members Only", "href": "/members-only/" },
+    { "label": "More", "href": "/more/", "children": [
+      { "label": "FAQ", "href": "/faq/" },
+      { "label": "Long Arm Resources", "href": "/long-arm-resources/" },
+      { "label": "Local Quilt Shops", "href": "/local-quilting-resources/" },
+      { "label": "Other Local Guilds", "href": "/other-local-guilds/" },
+      { "label": "Community Partners", "href": "/community-partners/" },
+      { "label": "Contact", "href": "/contact/" }
+    ] },
+    { "label": "Join Us", "href": "/join-us/", "join": true }
+  ],
+  "categories": {
+    "Chapter Meeting": "chapter-meeting",
+    "Fest": "fest",
+    "Mini-Workshop": "mini-workshop",
+    "Quilt Show": "quilt-show",
+    "Retreat": "retreat",
+    "Sew-In": "sew-in",
+    "Trunk Show": "trunk-show",
+    "Workshop": "workshop"
+  }
+}

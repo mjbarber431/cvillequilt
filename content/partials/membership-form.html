@@ -1,0 +1,67 @@
+<form class="form panel" data-form="membership" novalidate>
+  <fieldset>
+    <legend>Submission Type<span class="req">*</span></legend>
+    <div class="choice-grid choice-grid-2">
+      <label class="choice"><input type="radio" name="submission" value="Electronic Submission" required> Electronic Submission</label>
+      <label class="choice"><input type="radio" name="submission" value="Mailed Submission"> Mailed Submission</label>
+    </div>
+  </fieldset>
+
+  <div class="mail-box" data-when="Mailed Submission" hidden>
+    <p>To submit your membership application by mail please print the form using the hyperlink below and send the application and your check (made payable to CAQG) to:</p>
+    <p class="address">CAQG<br>Attn: Membership<br>P.O. Box 6724<br>Charlottesville, VA 22906</p>
+    <a class="download" href="/wp-content/uploads/2026/10/2027-Membership-Application-.pdf">{{icon:file}}<span>2027 CAQG Membership Application<small>PDF, print and mail</small></span></a>
+  </div>
+
+  <div class="form" data-when="Electronic Submission" hidden>
+    <p class="note">The Guild is charged a processing fee by Square to accept electronic payments. We are asking Guild members to pay this fee so that the Guild and Chapters receive the full membership payment. If you do not want to pay the fee please use the Mailed Submission option.</p>
+
+    <div class="field"><label for="m-email">Email<span class="req">*</span></label><input id="m-email" name="email" type="email" autocomplete="email" required></div>
+    <fieldset>
+      <legend>Name<span class="req">*</span></legend>
+      <div class="field-row field-row-2">
+        <div class="field"><input id="m-first" name="first" type="text" autocomplete="given-name" required aria-describedby="m-first-l"><span class="hint" id="m-first-l">First</span></div>
+        <div class="field"><input id="m-last" name="last" type="text" autocomplete="family-name" required aria-describedby="m-last-l"><span class="hint" id="m-last-l">Last</span></div>
+      </div>
+    </fieldset>
+    <div class="field"><label for="m-address">Address<span class="req">*</span></label><input id="m-address" name="address" type="text" autocomplete="street-address" required></div>
+    <div class="field-row field-row-3">
+      <div class="field"><label for="m-city">City<span class="req">*</span></label><input id="m-city" name="city" type="text" autocomplete="address-level2" required></div>
+      <div class="field"><label for="m-state">State<span class="req">*</span></label><input id="m-state" name="state" type="text" autocomplete="address-level1" value="VA" required></div>
+      <div class="field"><label for="m-zip">ZIP<span class="req">*</span></label><input id="m-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required></div>
+    </div>
+    <div class="field"><label for="m-phone">Preferred Phone</label><input id="m-phone" name="phone" type="tel" autocomplete="tel"></div>
+
+    <fieldset>
+      <legend>Membership Type<span class="req">*</span></legend>
+      <div class="choice-grid choice-grid-2">
+        <label class="choice"><input type="radio" name="membership" value="New Membership" data-amount="20" required> New Membership<span class="price">$20.00</span></label>
+        <label class="choice"><input type="radio" name="membership" value="Membership Renewal" data-amount="20"> Membership Renewal<span class="price">$20.00</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Chapter Memberships<span class="req">*</span> <span class="hint">Choose any or all, or no chapter.</span></legend>
+      <div class="choice-grid choice-grid-2">
+        <label class="choice"><input type="checkbox" name="chapters" value="Crozet" data-amount="5"> Crozet Chapter<span class="price">$5.00</span></label>
+        <label class="choice"><input type="checkbox" name="chapters" value="Grateful Threads" data-amount="10"> Grateful Threads Chapter<span class="price">$10.00</span></label>
+        <label class="choice"><input type="checkbox" name="chapters" value="Modern" data-amount="10"> Modern Chapter<span class="price">$10.00</span></label>
+        <label class="choice"><input type="checkbox" name="chapters" value="Moonlighters" data-amount="5"> Moonlighters Chapter<span class="price">$5.00</span></label>
+        <label class="choice"><input type="checkbox" name="chapters" value="Nelson" data-amount="10"> Nelson Chapter<span class="price">$10.00</span></label>
+        <label class="choice"><input type="checkbox" name="chapters" value="None" data-amount="0" data-none> No Chapter Membership<span class="price">$0.00</span></label>
+      </div>
+    </fieldset>
+
+    <div class="totals" aria-live="polite">
+      <div><span>Membership and chapters</span><span data-subtotal>$0.00</span></div>
+      <div><span>Processing Fee</span><span data-fee>$0.00</span></div>
+      <div class="grand"><span>Total</span><span data-total>$0.00</span></div>
+    </div>
+    <p class="hint">After you select <strong>Submit</strong> you will go to a secure Square page to pay by card.</p>
+  </div>
+
+  <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="cf-turnstile" data-when="Electronic Submission" hidden></div>
+  <div class="form-status" role="status" aria-live="polite"></div>
+  <div data-when="Electronic Submission" hidden><button class="btn btn-primary" type="submit">Submit</button></div>
+</form>
