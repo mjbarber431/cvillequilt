@@ -7,7 +7,7 @@ location: Vicki Kirby's home in Keswick
 address: 1435 Running Deer Drive
 organizer: Mini-Workshops
 organizerEmail: miniworkshops@cvillequilt.org
-cost: 10.00
+cost: "10.00"
 image: /wp-content/uploads/2026/05/ChatGPT-Image_Ice-Dye-e1778268891856.png
 registration: sold out
 ---

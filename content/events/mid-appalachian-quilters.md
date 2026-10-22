@@ -2,7 +2,7 @@
 title: Mid-Appalachian Quilters
 start: 2025-06-06 08:00
 end: 2025-06-08 18:00
-hideTime: yes
+hideTime: true
 ---
 <p>Mid-Appalachian Quilter&#8217;s Educational Seminar</p>
 <p>Gettysburg College, Gettysburg PA</p>

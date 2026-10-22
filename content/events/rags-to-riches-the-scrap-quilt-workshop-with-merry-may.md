@@ -1,5 +1,5 @@
 ---
-title: Rags to Riches: The Scrap Quilt — Workshop with Merry May
+title: "Rags to Riches: The Scrap Quilt — Workshop with Merry May"
 start: 2026-09-18 09:00
 end: 2026-09-18 15:30
 category: Workshop

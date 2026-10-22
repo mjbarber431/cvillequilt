@@ -2,7 +2,7 @@
 title: Membership application
 crumb: Join Us | /join-us/
 description: Apply or renew your Charlottesville Area Quilters Guild membership online, or print the application and mail it with a check.
-join: no
+join: "no"
 scripts: /assets/js/forms.js
 ---
 <section class="section">

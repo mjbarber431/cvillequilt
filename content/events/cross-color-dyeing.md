@@ -7,7 +7,7 @@ location: Charlottesville-Albemarle Rescue Squad
 address: 828 McIntire Road, Charlottesville, VA
 organizer: Programs
 organizerEmail: programs@cvillequilt.org
-cost: 50.00
+cost: "50.00"
 ---
 <p><strong>Color Cross Dyeing</strong></p>
 <p>Have you always wanted to try dyeing your own fabrics? Learn an easy dye process and explore how colors combine while dyeing sets of fabrics, seven at a time. The result of this process is a subtle blend of the two colors you start with as they mix and cross. Class will consist of three different rounds of dyeing, so you will leave class with 21 unique fabrics. There is even an option to dye your own Color Wheel! Come play with color and learn how easy it is to dye your own fabrics. The waiting and rinsing are the hardest parts! Beginner to Advanced. 6 hours.</p>

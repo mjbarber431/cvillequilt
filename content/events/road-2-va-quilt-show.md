@@ -2,7 +2,7 @@
 title: Road 2 VA Quilt Show
 start: 2025-06-26 08:00
 end: 2025-06-28 18:00
-hideTime: yes
+hideTime: true
 category: Quilt Show
 ---
 <p>Show details <a href="https://www.road2va.com/" target="_blank" rel="noopener">here</a>.</p>

@@ -1,0 +1,148 @@
+# Site editor settings (Sveltia CMS). Each "collection" is a kind of content
+# the guild can edit in the browser at /editor/.
+backend:
+  name: github
+  repo: mjbarber431/cvillequilt
+  branch: main
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+# New photos and PDFs go here and are linked as /uploads/...
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: events
+    label: Calendar events
+    label_singular: Event
+    description: Chapter meetings, workshops, Fests and shows. Changes appear on the site about a minute after you save.
+    folder: content/events
+    extension: md
+    format: yaml-frontmatter
+    create: true
+    delete: true
+    identifier_field: title
+    summary: "{{start}} | {{title}}"
+    sortable_fields:
+      fields: [start, title, category]
+      default:
+        field: start
+        direction: descending
+    view_filters:
+      - { label: Chapter meetings, field: category, pattern: Chapter Meeting }
+      - { label: Workshops and mini-workshops, field: category, pattern: Workshop }
+      - { label: Repeating events, field: repeat, pattern: FREQ }
+      - { label: Starting in 2026, field: start, pattern: "^2026" }
+      - { label: Starting in 2027, field: start, pattern: "^2027" }
+    view_groups:
+      - label: Category
+        field: category
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: start
+        label: Starts
+        widget: datetime
+        format: YYYY-MM-DD HH:mm
+        hint: For a repeating meeting, the date of the first meeting.
+      - name: end
+        label: Ends
+        widget: datetime
+        format: YYYY-MM-DD HH:mm
+        hint: Same day as the start unless the event runs over several days (like the retreat).
+      - { name: allDay, label: All day (no times shown), widget: boolean, required: false }
+      - { name: hideTime, label: Hide the time, widget: boolean, required: false, hint: For out-of-town shows where times vary. }
+      - name: category
+        label: Category
+        widget: select
+        required: false
+        options: [Chapter Meeting, Workshop, Mini-Workshop, Fest, Quilt Show, Sew-In, Trunk Show, Retreat]
+      - { name: location, label: Place name, widget: string, required: false, hint: "For example: The Center at Belvedere" }
+      - { name: address, label: Street address, widget: string, required: false, hint: Adds a "Map and directions" link. }
+      - { name: organizer, label: Organizer, widget: string, required: false }
+      - name: organizerEmail
+        label: Organizer email
+        widget: string
+        required: false
+        pattern: ['^$|^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter an email address like programs@cvillequilt.org']
+      - { name: cost, label: Cost, widget: string, required: false, hint: "Shown in the event details, e.g. 10.00" }
+      - { name: image, label: Photo, widget: image, required: false }
+      - { name: moreInfo, label: '"Read More" link', widget: string, required: false, hint: A web address for more details on another site. }
+      - name: repeat
+        label: Repeats
+        widget: select
+        required: false
+        hint: Leave empty for a one-time event. Ask for help if you need a pattern that isn't listed.
+        options:
+          - { label: Every week (same day as the start date), value: FREQ=WEEKLY }
+          - { label: 1st Monday of each month, value: "FREQ=MONTHLY;BYDAY=1MO" }
+          - { label: 2nd Monday of each month, value: "FREQ=MONTHLY;BYDAY=2MO" }
+          - { label: 1st and 3rd Monday of each month, value: "FREQ=MONTHLY;BYDAY=1MO,3MO" }
+          - { label: 2nd and 4th Monday of each month, value: "FREQ=MONTHLY;BYDAY=2MO,4MO" }
+          - { label: 3rd Tuesday of each month, value: "FREQ=MONTHLY;BYDAY=3TU" }
+          - { label: 2nd Wednesday of each month, value: "FREQ=MONTHLY;BYDAY=2WE" }
+          - { label: 2nd and 4th Wednesday (and the 5th when there is one), value: "FREQ=MONTHLY;BYDAY=2WE,4WE,-1WE" }
+          - { label: 2nd Thursday and 4th Sunday of each month, value: "FREQ=MONTHLY;BYDAY=2TH,4SU" }
+          - { label: 1st Saturday of each month, value: "FREQ=MONTHLY;BYDAY=1SA" }
+          - { label: 3rd Saturday of each month, value: "FREQ=MONTHLY;BYDAY=3SA" }
+      - { name: until, label: Repeats until, widget: datetime, type: date, required: false, hint: The last date of a repeating series. Leave empty to keep going. }
+      - name: skip
+        label: Skip these dates
+        label_singular: date
+        widget: list
+        required: false
+        hint: Holidays or other dates when a repeating meeting doesn't happen.
+        field: { name: date, label: Date, widget: datetime, type: date }
+      - name: registration
+        label: Online sign-up
+        widget: select
+        required: false
+        options:
+          - { label: Open (show a sign-up form), value: open }
+          - { label: Sold out, value: sold out }
+      - { name: capacity, label: Spaces available, widget: number, required: false, hint: Sign-up closes automatically when full. }
+      - { name: price, label: Sign-up price ($), widget: number, value_type: float, required: false, hint: Leave empty for free events. Paid sign-ups go through Square. }
+      - name: body
+        label: Description
+        widget: richtext
+        format: html
+        modes: [rich_text, raw]
+        required: false
+
+  - name: posts
+    label: News posts
+    label_singular: News post
+    folder: content/posts
+    extension: md
+    format: yaml-frontmatter
+    create: true
+    delete: true
+    identifier_field: title
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date line, widget: string, hint: "Shown under the title, e.g. March 9, 2025, by Anita" }
+      - { name: description, label: Short summary, widget: text, required: false, hint: Used by search engines and link previews. }
+      - { name: body, label: Post, widget: richtext, format: html, modes: [rich_text, raw] }
+
+  - name: pages
+    label: Pages (advanced)
+    label_singular: Page
+    description: The page text is shown as HTML so the layout isn't lost. Change the words between the tags; leave the tags alone.
+    folder: content/pages
+    extension: md
+    format: yaml-frontmatter
+    create: false
+    delete: false
+    identifier_field: title
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: heading, label: Heading (if different from the title), widget: string, required: false }
+      - { name: description, label: Short summary, widget: text, required: false }
+      - { name: crumb, label: "Breadcrumb (advanced: Label | /address/)", widget: string, required: false }
+      - { name: banner, label: "Banner (advanced)", widget: string, required: false }
+      - { name: join, label: "Join band (advanced)", widget: string, required: false }
+      - { name: scripts, label: "Scripts (advanced)", widget: string, required: false }
+      - { name: body, label: Page content, widget: richtext, format: html, modes: [raw] }

@@ -1,7 +1,7 @@
 ---
 title: Join our guild
 description: Membership in the Charlottesville Area Quilters Guild is open to all, beginners and experienced quilters alike. Apply online or by mail.
-join: no
+join: "no"
 scripts: /assets/js/forms.js
 ---
 <section class="section">

@@ -3,7 +3,8 @@ title: Nelson
 start: 2025-09-15 13:00
 end: 2025-09-15 15:00
 repeat: FREQ=MONTHLY;BYDAY=1MO,3MO
-skip: 2026-01-19
+skip:
+  - 2026-01-19
 category: Chapter Meeting
 location: St. Mary's Catholic Church
 address: 9900 Thomas Nelson Hwy, Lovingston, VA 22949

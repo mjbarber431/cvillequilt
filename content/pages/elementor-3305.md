@@ -1,7 +1,7 @@
 ---
 title: Booking Confirmation
 description: Thank you for signing up for a Charlottesville Area Quilters Guild event.
-join: no
+join: "no"
 ---
 <section class="section">
   <div class="wrap prose">

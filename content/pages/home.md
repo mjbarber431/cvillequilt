@@ -1,7 +1,7 @@
 ---
 title: Charlottesville Area Quilters Guild
 banner: none
-join: no
+join: "no"
 description: Charlottesville Area Quilters Guild is a 501(3)(c) charitable organization serving the greater Charlottesville Virginia area. Chapters, workshops, community service quilts and a quilt show.
 ---
 <section class="hero">

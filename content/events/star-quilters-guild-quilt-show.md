@@ -2,7 +2,7 @@
 title: Star Quilters Guild Quilt Show
 start: 2025-03-28 08:00
 end: 2025-03-29 18:00
-hideTime: yes
+hideTime: true
 category: Quilt Show
 ---
 <p>2025 Quilt Show</p>

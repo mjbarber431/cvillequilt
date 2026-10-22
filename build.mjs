@@ -377,11 +377,11 @@ function renderDirectives(body) {
     });
 }
 
-function renderDir(dir, urlFor) {
+function renderDir(dir, urlFor, wrap = (body) => body) {
   if (!existsSync(dir)) return [];
-  return readdirSync(dir).filter((f) => f.endsWith(".html") && !f.startsWith("_")).map((f) => {
+  return readdirSync(dir).filter((f) => /\.(md|html)$/.test(f) && !f.startsWith("_")).map((f) => {
     const { meta, body } = parseFile(join(dir, f));
-    const path = meta.path || urlFor(f.replace(/\.html$/, ""));
+    const path = meta.path || urlFor(f.replace(/\.(md|html)$/, ""));
     const crumb = meta.crumb ? { label: meta.crumb.split("|")[0].trim(), href: meta.crumb.split("|")[1].trim() } : null;
     const top = meta.banner === "none" ? "" : banner(esc(meta.heading || meta.title), crumb, meta.date);
     const scripts = (meta.scripts || "").split(",").map((s) => s.trim()).filter(Boolean);
@@ -389,8 +389,8 @@ function renderDir(dir, urlFor) {
       title: meta.title,
       description: meta.description,
       path,
-      body: top + renderDirectives(body),
-      join: meta.join !== "no",
+      body: top + wrap(renderDirectives(body)),
+      join: !["false", "no"].includes(String(meta.join).toLowerCase()),
       scripts,
     }));
     return path;
@@ -398,7 +398,8 @@ function renderDir(dir, urlFor) {
 }
 
 const pagePaths = renderDir(join(ROOT, "content/pages"), (slug) => (slug === "home" ? "/" : `/${slug}/`));
-const postPaths = renderDir(join(ROOT, "content/posts"), (slug) => `/${slug}/`);
+// News posts hold only their text; the page layout is added here.
+const postPaths = renderDir(join(ROOT, "content/posts"), (slug) => `/${slug}/`, (body) => `<section class="section"><div class="wrap prose">${body}</div></section>`);
 
 // 404 page
 writeFileSync(join(DIST, "404.html"), layout({

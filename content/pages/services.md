@@ -1,6 +1,6 @@
 ---
 title: Chapters
-description: Guild chapters meet in Crozet, Charlottesville and Lovingston: Crozet, Grateful Threads, Modern, Moonlighters and Nelson.
+description: "Guild chapters meet in Crozet, Charlottesville and Lovingston: Crozet, Grateful Threads, Modern, Moonlighters and Nelson."
 ---
 <section class="section">
   <div class="wrap">

@@ -7,7 +7,7 @@ location: Aldersgate United Methodist Church
 address: 1500 Rio Rd E, Charlottesville, VA 22901
 organizer: Programs
 organizerEmail: programs@cvillequilt.org
-cost: 50.00
+cost: "50.00"
 ---
 <p>&#8220;Color Study&#8221;</p>
 <p>In this no-sew, design-focused workshop, students will explore color theory by designing nine star blocks using tone-on-tone fabric scraps brought in and shared by the group. Emphasizing color selection and design, the workshop allows students to focus on understanding and applying different color theories. Fabric combinations will be pinned to flannel during the session, with final block assembly to be completed at home. Beginner to Advanced. 6 hours

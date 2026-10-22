@@ -4,7 +4,8 @@ start: 2026-01-08 12:00
 end: 2026-01-08 16:00
 repeat: FREQ=MONTHLY;BYDAY=2TH,4SU
 until: 2026-03-31
-skip: 2026-02-22
+skip:
+  - 2026-02-22
 location: Cottonwood Quilt Shop
 address: 2035 Barracks Road, Charlottesville, VA
 organizer: Robin Hamill

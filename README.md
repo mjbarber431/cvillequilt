@@ -4,13 +4,38 @@ The Charlottesville Area Quilters Guild website, rebuilt from the old WordPress
 site as a small static site with a Cloudflare Worker for the forms. All the
 original copy, photos, PDFs and page addresses are kept.
 
-- **Everyday editing** (events, pages, tables) is plain text files in `content/`.
-- **Preview** on your own computer with one command.
-- **Publish** with one command.
+- **Everyday editing** happens in the browser at **`/editor/`**: a form for
+  each event, with date pickers and dropdowns. Saving republishes the site.
+- Everything is also plain files in `content/`, so it can be edited directly.
+- A **preview copy** runs on GitHub Pages:
+  <https://mjbarber431.github.io/cvillequilt/>
 
 ---
 
-## Everyday editing
+## Editing in the browser (recommended)
+
+Go to **<https://mjbarber431.github.io/cvillequilt/editor/>** (later
+`https://cvillequilt.org/editor/`).
+
+1. Sign in. For now, choose **Sign In Using Access Token** and follow the link it
+   shows to create a GitHub token (it pre-selects the right permissions). Before
+   handing this to the guild, set up the one-click **Sign In with GitHub**
+   button (see "Editor sign-in" below) and add each editor's GitHub account as a
+   collaborator on the repository.
+2. Pick **Calendar events**, **News posts** or **Pages (advanced)**.
+3. Edit, then **Save**. Each save is recorded on GitHub (so any change can be
+   undone) and the site republishes itself in about a minute.
+
+Calendar events are a normal form: title, start and end with date pickers,
+category, place, organizer, photo, a "Repeats" dropdown for chapter meetings,
+"Skip these dates" for holidays, online sign-up options, and the description
+with bold, links and lists. Use the filters at the top for chapter meetings,
+workshops, or a given year.
+
+Pages are shown as HTML so their layout isn't lost: change the words between
+the tags and leave the tags alone. For bigger page changes, ask for help.
+
+## Editing the files directly
 
 You need [Node.js](https://nodejs.org) 22.18 or newer installed once. Open a
 terminal in this folder for the commands below.
@@ -28,7 +53,7 @@ are printed in the terminal instead of being emailed. Press `Ctrl+C` to stop.
 
 Each event is one file in `content/events/`. To add one, copy a similar event
 file, give it a new name (the name becomes the web address, so use lowercase
-words joined with hyphens, such as `spring-workshop-2027.html`) and edit it:
+words joined with hyphens, such as `spring-workshop-2027.md`) and edit it:
 
 ```
 ---
@@ -47,14 +72,16 @@ image: /wp-content/uploads/2026/05/Shimmering-Triangles.png
 ```
 
 Everything between the two `---` lines is event details, one per line; below
-that is the description. Lines you don't need can be left out.
+that is the description (HTML). Lines you don't need can be left out. If a
+value contains a colon followed by a space, put it in quotes:
+`title: "Rags to Riches: The Scrap Quilt"`.
 
 | Line | What it does |
 | --- | --- |
 | `title` | Event name |
 | `start`, `end` | `YEAR-MONTH-DAY HOUR:MINUTE`, 24-hour clock (`13:00` is 1 pm). A multi-day event like the retreat just has a later `end` date. |
-| `allDay: yes` | No times shown |
-| `hideTime: yes` | Hide the time (out-of-town shows) |
+| `allDay: true` | No times shown |
+| `hideTime: true` | Hide the time (out-of-town shows) |
 | `category` | One of: Chapter Meeting, Workshop, Mini-Workshop, Fest, Quilt Show, Sew-In, Trunk Show, Retreat |
 | `location`, `address` | Place name and street address (adds a map link) |
 | `organizer`, `organizerEmail` | Who to contact |
@@ -88,8 +115,8 @@ month, and `-1` means the last.
 ### Change a page
 
 Pages are in `content/pages/`. The file name matches the web address
-(`quilt-show.html` is `/quilt-show/`; `services.html` is the Chapters page and
-`pillowcase-challenge-duplicate-2362.html` is NICU Quilts, both named after
+(`quilt-show.md` is `/quilt-show/`; `services.md` is the Chapters page and
+`pillowcase-challenge-duplicate-2362.md` is NICU Quilts, both named after
 their original addresses). Edit the text between the HTML tags; keep the tags
 themselves as they are. A few shortcuts are filled in automatically:
 
@@ -108,13 +135,13 @@ turns into tidy cards on phones.
 
 ### Publish
 
-```sh
-npm run deploy
-```
+Commit and push to the `main` branch on GitHub. That republishes the preview on
+GitHub Pages automatically (see the **Actions** tab), after the checks pass:
+every link, image and PDF must exist, and the calendar must calculate correctly.
+If a check fails, nothing is published and the log says what to fix.
 
-This rebuilds the site, runs the checks (every link, image and PDF must exist,
-and the calendar must calculate correctly), then publishes. If a check fails,
-nothing is published and the message says what to fix.
+Once the site moves to Cloudflare, `npm run deploy` does the same checks and
+publishes there.
 
 ### See sign-ups, applications and messages
 
@@ -136,6 +163,9 @@ dev.mjs         local preview with working forms
 test/           checks run before every publish
 ```
 
+- **Editor**: `static/editor/` holds [Sveltia CMS](https://sveltiacms.app)
+  (`config.yml` describes the forms). It reads and writes the files in
+  `content/` through GitHub; every save is a commit.
 - **Calendar**: events are expanded into dates in the browser (`src/js/recur.js`),
   so "next meeting" dates are always current without rebuilding. Every event also
   has an iCal file (`/events/<name>.ics`) and the whole calendar can be subscribed
@@ -153,6 +183,28 @@ test/           checks run before every publish
 - **Old addresses**: every WordPress page address still works, and old links
   such as `/mec-category/workshop/` and `/?method=ical&id=…` redirect to the
   new equivalents.
+
+## Editor sign-in
+
+The token sign-in is fine for testing. For the guild, set up the **Sign In with
+GitHub** button once:
+
+1. Deploy [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth),
+   a free Cloudflare Worker (its README has a one-click deploy).
+2. Create a GitHub OAuth app whose callback URL is the authenticator's
+   `/callback` address, and give the authenticator its client ID and secret.
+3. Add `base_url: https://<your-authenticator>.workers.dev` under `backend:` in
+   `static/editor/config.yml`.
+4. Invite each editor's GitHub account as a collaborator on the repository
+   (Settings > Collaborators). They can then sign in at `/editor/`.
+
+## GitHub Pages preview
+
+`.github/workflows/pages.yml` builds the site with `BASE_PATH=/cvillequilt` (the
+site lives in a sub-folder there) and `NOINDEX=1` (so search engines don't list
+the copy). There is no server on Pages, so the online forms show "please email
+us instead"; everything else works. When the real site moves to Cloudflare,
+the Pages preview can be turned off in the repository settings.
 
 ## One-time setup (Cloudflare)
 

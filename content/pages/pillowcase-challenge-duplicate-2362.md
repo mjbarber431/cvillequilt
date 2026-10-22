@@ -1,7 +1,7 @@
 ---
 title: NICU Quilts
 crumb: Community Service | /service/
-description: Since 2025 the Guild has donated quilts to the UVA Children's Hospital NICU: small quilts that go home with families and larger incubator covers.
+description: "Since 2025 the Guild has donated quilts to the UVA Children's Hospital NICU: small quilts that go home with families and larger incubator covers."
 ---
 <section class="section">
   <div class="wrap content-grid">
