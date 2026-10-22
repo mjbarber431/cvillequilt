@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 24
       - name: Check links, calendar and fees
-        run: node build.mjs && node --test test/
+        run: node build.mjs && node --test test/*.test.mjs
       - name: Build preview
         run: node build.mjs
         env:
