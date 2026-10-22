@@ -306,7 +306,7 @@ li + li { margin-top: 0.35em; }
   background: var(--chambray); border-radius: var(--radius); padding: 1.4rem 1.5rem;
   border-top: 6px solid var(--indigo); margin: 0;
 }
-@media (min-width: 900px) { .facts { position: sticky; top: 6.5rem; } }
+@media (min-width: 900px) { aside.facts { position: sticky; top: 6.5rem; } }
 .facts dl { margin: 0; }
 .facts dt { font-family: var(--serif); font-weight: 600; color: var(--indigo); font-size: 1.05rem; margin-top: 0.9rem; }
 .facts dt:first-child { margin-top: 0; }
